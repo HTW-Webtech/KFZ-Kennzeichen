@@ -1,0 +1,53 @@
+/*
+   Verkehrsrot:    #C1121C
+   Verkehrsgelb:   #F0CA00
+   Verkehrsblau:   #063971
+   Verkehrspurpur: #992572
+ */
+
+* { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+
+body,
+input /* opera … */ {
+   font-family: monospace;
+   font-size: 18px;
+}
+
+body { background-color: #063971; }
+
+main {
+   display: flex;
+   flex-direction: column;
+   max-width: 400px;
+   margin: 0 auto;
+}
+
+input,
+ul { margin: 10px; }
+
+input {
+   padding: 10px;
+   border: 0;
+   background-color: white;
+   font-size: 24px;
+   text-transform: uppercase;
+}
+
+ul {
+   margin: 10px;
+   padding: 0;
+   list-style: none;
+}
+
+li {
+   margin-bottom: 10px;
+   padding: 9px;
+   border: 0;
+   background: white;
+   font-family: sans-serif;
+}
+
+strong {
+   padding-right: 10px;
+   font-family: monospace;
+}

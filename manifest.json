@@ -1,0 +1,14 @@
+{
+  "name": "Kennzeichen",
+  "short_name": "Kennzeichen",
+  "theme_color": "#063971",
+  "background_color": "#063971",
+  "icons": [{
+    "src": "icon.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}
