@@ -1,0 +1,17 @@
+CACHE MANIFEST
+# Version: 1.1
+
+CACHE:
+.
+index.html
+icon.png
+style.css
+script.js
+service-worker.js
+manifest.json
+data/kennzeichen.json
+data/laenderkennzeichen.json
+data/diplomatenkennzeichen.json
+
+NETWORK:
+*
