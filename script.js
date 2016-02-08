@@ -2,21 +2,22 @@
 
 document.addEventListener('DOMContentLoaded', initialize);
 
+
+// ------------------------------------------------------------
+
+
 function initialize() {
    const input = document.querySelector('input');
-   const liste = document.querySelector('ul');
+   const list = document.querySelector('ul');
    const files = ['kennzeichen', 'laenderkennzeichen', 'diplomatenkennzeichen'];
-   const manager = new Verzeichnisdienst(liste);
+   const manager = new DirectoryManager(list);
 
    Promise
       .all(files.map(file => fetch(`data/${file}.json`)))
-      .then(responses => responses.map(response => {
-         response.json().then(json => {
-            manager.addService(new Verzeichnis(json));
-         });
-      }));
+      .then(responses => Promise.all(responses.map(response => response.json())))
+      .then(jsons => jsons.map(json => manager.addDirectory(new Directory(json))));
 
-   input.addEventListener('keyup', () => manager.search(input.value.trim().toUpperCase()));
+   input.addEventListener('keyup', () => manager.render(input.value.trim().toUpperCase()));
 
    if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js', { scope: '.' });
@@ -27,24 +28,21 @@ function initialize() {
 // ------------------------------------------------------------
 
 
-class Verzeichnisdienst {
+class DirectoryManager {
 
    constructor(element) {
-      this.services = [];
       this.element = element;
+      this.directories = [];
       this.emptyTemplate = `<li>keine Ergebnisse</li>`;
    }
 
-   addService(service) {
-      this.services.push(service);
-   }
-
-   search(term) {
-      this.element.innerHTML = term ? this.render(term) || this.emptyTemplate : '';
+   addDirectory(directory) {
+      this.directories.push(directory);
    }
 
    render(term) {
-      return this.services.map(service => service.search(term)).join('');
+      const invoke = (fn) => this.directories.map(directory => directory[fn](term)).join('');
+      this.element.innerHTML = invoke('search') || invoke('reverseSearch') || this.emptyTemplate;
    }
 
 }
@@ -53,21 +51,26 @@ class Verzeichnisdienst {
 // ------------------------------------------------------------
 
 
-class Verzeichnis {
+class Directory {
 
    constructor(data) {
       this.data = data;
    }
 
    search(term) {
-      return Object.keys(this.data)
-         .filter(value => value.startsWith(term))
-         .map(key => this.render(key))
-         .join('');
+      const filter = (key) => key.startsWith(term);
+      return this.render(filter);
    }
 
-   render(key) {
-      return `<li><strong>${key}</strong> ${this.data[key]}</li>`;
+   reverseSearch(term) {
+      const regexp = new RegExp(term, 'i');
+      const filter = (key) => this.data[key].match(regexp);
+      return this.render(filter);
+   }
+
+   render(filter) {
+      const template = (key) => `<li><strong>${key}</strong> ${this.data[key]}</li>`;
+      return Object.keys(this.data).filter(filter).map(template).join('');
    }
 
 }

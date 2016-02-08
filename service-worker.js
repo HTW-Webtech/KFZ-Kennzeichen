@@ -32,7 +32,7 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-   console.log('Handling fetch event for:', event.request.url);
+   console.log('[fetch] Handling fetch event for:', event.request.url);
    event.respondWith(
       caches.match(event.request).then((response) => {
          if (response) {
