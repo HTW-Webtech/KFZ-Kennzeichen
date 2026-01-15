@@ -1,53 +1,82 @@
-/*
-   Verkehrsrot:    #C1121C
-   Verkehrsgelb:   #F0CA00
-   Verkehrsblau:   #063971
-   Verkehrspurpur: #992572
- */
-
-* { -webkit-tap-highlight-color: rgba(0,0,0,0); }
-
-body,
-input /* opera … */ {
-   font-family: monospace;
-   font-size: 18px;
+:root {
+    --traffic-red: #c1121c;
+    --traffic-yellow: #f0ca00;
+    --traffic-blue: #063971;
+    --traffic-purple: #992572;
+    --white: #fff;
+    --spacing: 10px;
+    --max-width: 400px;
 }
 
-body { background-color: #063971; }
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
+    font-size: 1.125rem;
+    margin: 0;
+    background-color: var(--traffic-blue);
+    -webkit-tap-highlight-color: transparent;
+}
 
 main {
-   display: flex;
-   flex-direction: column;
-   max-width: 400px;
-   margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    max-width: var(--max-width);
+    height: 100%;
+    margin-inline: auto;
+    padding: var(--spacing);
 }
 
-input,
-ul { margin: 10px; }
-
 input {
-   padding: 10px;
-   border: 0;
-   background-color: white;
-   font-size: 24px;
-   text-transform: uppercase;
+    flex-shrink: 0;
+    font-family: ui-monospace, monospace;
+    font-size: 1.5rem;
+    padding: var(--spacing);
+    border: none;
+    border-radius: 4px;
+    background-color: var(--white);
+    text-transform: uppercase;
+}
+
+input:focus {
+    outline: 3px solid var(--traffic-yellow);
+    outline-offset: 2px;
 }
 
 ul {
-   margin: 10px;
-   padding: 0;
-   list-style: none;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--spacing);
+    min-height: 0;
+    margin: var(--spacing) 0 0;
+    padding: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    list-style: none;
 }
 
 li {
-   margin-bottom: 10px;
-   padding: 9px;
-   border: 0;
-   background: white;
-   font-family: sans-serif;
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    padding: var(--spacing);
+    border-radius: 4px;
+    background: var(--white);
 }
 
-strong {
-   padding-right: 10px;
-   font-family: monospace;
+li strong {
+    font-family: ui-monospace, monospace;
 }

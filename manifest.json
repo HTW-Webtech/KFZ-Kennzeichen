@@ -1,14 +1,19 @@
 {
-  "name": "Kennzeichen",
-  "short_name": "Kennzeichen",
-  "theme_color": "#063971",
-  "background_color": "#063971",
-  "icons": [{
-    "src": "icon.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }],
-  "start_url": "index.html",
-  "display": "standalone",
-  "orientation": "portrait"
+    "name": "KFZ-Kennzeichen",
+    "short_name": "Kennzeichen",
+    "description": "Deutsche KFZ-Kennzeichen nachschlagen",
+    "theme_color": "#063971",
+    "background_color": "#063971",
+    "display": "standalone",
+    "orientation": "portrait",
+    "start_url": "./",
+    "scope": "./",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
 }

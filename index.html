@@ -1,39 +1,40 @@
-<!DOCTYPE html>
-<html lang="de" manifest="app.appcache">
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Deutsche KFZ-Kennzeichen nachschlagen"
+        />
 
-<head>
-   <meta charset="UTF-8">
-   <title>KFZ-Kennzeichen</title>
+        <title>KFZ-Kennzeichen</title>
 
-   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="theme-color" content="#063971" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
 
-   <meta name="mobile-web-app-capable" content="yes">
-   <meta name="apple-mobile-web-app-capable" content="yes">
-   <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="manifest" href="manifest.json" />
+        <link rel="icon" href="icon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="icon.png" />
 
-   <meta name="apple-mobile-web-app-title" content="KFZ-Kennzeichen">
-   <meta name="application-name" content="KFZ-Kennzeichen">
+        <link rel="stylesheet" href="style.css" />
+        <script async src="script.js"></script>
+    </head>
 
-   <meta name="theme-color" content="#063971">
-   <link rel="manifest" href="manifest.json">
-
-   <link rel="icon" href="icon.png">
-   <link rel="apple-touch-icon" href="icon.png">
-
-   <link rel="stylesheet" href="style.css">
-   <script src="script.js"></script>
-</head>
-
-<body>
-   <main>
-
-      <input placeholder="Kennzeichen" autofocus>
-
-      <ul>
-         <!-- wird dynamisch angereichert -->
-      </ul>
-
-   </main>
-</body>
-
+    <body>
+        <main>
+            <input
+                type="search"
+                placeholder="Kennzeichen"
+                autofocus
+                aria-label="Kennzeichen eingeben"
+                autocomplete="off"
+            />
+            <ul role="list" aria-live="polite" aria-label="Suchergebnisse"></ul>
+        </main>
+    </body>
 </html>
